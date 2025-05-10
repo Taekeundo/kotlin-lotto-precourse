@@ -23,157 +23,64 @@
          
 
 
+## (2) Execution Flow & Feature List based on the Execution Flow
+- OutputView: Please enter the purchase amount.
+- Read InputView(1): price
+    - Validate
+        - 숫자 맞는지 (하나라도 문자가 들어있으면 안됨)
+        - 1000원 단위 (나눠지는지)
+        => "형식 맞지 않을 경우 [ERROR]처리"
 
-## (2) Execution Flow
-```
-main()
-├── Ask input(1) (e.g., names)
-├── Get input
-├── Validate input
-│
-├── Ask input(2) (e.g., number of rounds)
-├── Get input
-├── Validate input
-│
-├── Generate initial game state
-├── Loop for N rounds
-│     ├── Move logic (e.g., random check, calc)
-│     └── Store round result snapshot
-│
-├── Determine winner(s)
-│
-├── Process final result
-└── Print output
-```
+- OutputView: \n
+- OutputView: You have purchased 15(= nTickets) tickets.
 
-### STEP 1. INPUT
-- read raw input(s) from user
-- parse if needed (e.g., split, trim, convert)
-- validate each input (type, range, format, rule)
+    - Calc
+        - price로 몇개(nTickets) 살 수 있는지 체크
 
-### STEP 2. INIT
-- create initial state/data structure based on input
-- initialize domain objects or configuration if needed
+    - RandomGenerate
+        - repeat(nTickets) -> 랜덤 6자리 숫자 생성 -> 출력 -> 저장
+        - 규칙
+            6개 생성해야함
+            서로 겹치면 안됨
+            오름차순 정렬
 
-### STEP 3. PROCESS / LOOP
-- repeat or iterate as required by the problem
-    - apply logic per iteration (e.g., rule check, update state)
-    - track intermediate result if necessary
+- OutputView: \n
+- OutputView: Please enter last week's winning numbers.
+- Read InputView(2): 6 digits from User
+    - Validate
+        - 6개 맞는지
+        - 숫자 맞는지
+        - 겹치는거 없는지
+        - 범위가 1-45 맞는지
 
-### STEP 4. FINALIZE
-- process final result (e.g., filter, calculate, find max/min)
-- resolve edge cases (e.g., tie, multiple result candidates)
+- OutputView: \n
+- OutputView: Please enter the bonus number.
+- Read InputView(3): 1 bonus number
+    - Validate
+        - 1개 맞는지
+        - 숫자 맞는지
+        - 범위가 1-45 맞는지
 
-### STEP 5. OUTPUT
-- format and display result
-- show error messages if applicable
+- Calc
+    - 입력 받은 숫자와 저장된 숫자가 몇개 같은지 체크
+    - (1등 - 5등) // 각각의 매칭 규칙에 맞게 확인 후 결과 저장
 
-### Flow
-1. OutputView<br>
-   "Enter the names of the cars (comma-separated):"
+- OutputView: \n
+- OutputView: Winning Statistics
+    - 아래 형식에 맞는 결과 출력
 
-2. InputView (CarNames <List>)<br>
-   e.g.) "jason, ja, j"
+---
+3 Matches (5,000 KRW) – 1 tickets
+4 Matches (50,000 KRW) – 0 tickets
+5 Matches (1,500,000 KRW) – 0 tickets
+5 Matches + Bonus Ball (30,000,000 KRW) – 0 tickets
+6 Matches (2,000,000,000 KRW) – 0 tickets
+Total return rate is 33.3%.
 
-   -> Validate Input(1)
-   ```
-    Max length: 5 letters
-    Duplication X
-    Empty X
-   ```
-
-3. OutputView<br>
-   "How many rounds will be played?"
-
-4. InputView (nMove <Int>) <br>
-   e.g.) 5
-
-  -> Validate Input(2)
-    ```
-    Only Integer
-    Must be over 0
-    ```
-
-5. OutputView<br>
-   "\n"
-
-6. Service: generate & save
-   1. Loop (Each round)
-   2. generate Random number 
-      If) Over 4 -> go
-      Else) -> Not go
-   3. Save each round result
-      RoundResult <List>
-   
-    ```
-    { carName: jason, position: 2 }
-    { carName: ja, position: 1 }
-    { carName: j, position: 3 }
-   ```
-
-7. Service: Calc <br>
-   Calculate winner -> Comparing final result.
-
-   !! Handling Co-winner !!
-
-8. OutputView <br>
-   Print loop for each round result as many as "nMove" times.
-
-        Race Results
-        jason : -
-        ja : -
-        j : -
-
-9. OutputView <br>
-   "\n"
-
-10. OutputView <br>
-   "Winners : jason"
-
-11. Error handling
-    - Invalid "carName"
-    - Invalid "nMove"
-
-
-
-
-
-## (3) Feature List based on the Execution Flow
-
-### 1. Input & Output
-- [ ] Show message: "Enter the names of the cars (comma-separated):"
-- [ ] Receive car names and parse them
-- [ ] Validate car names (length, duplicate, empty)
-
-- [ ] Show message: "How many rounds will be played?"
-- [ ] Receive number of rounds
-- [ ] Validate number of rounds (integer, > 0)
-
-### 2. Race Execution
-- [ ] Run race for N rounds
-- [ ] For each car, generate random number and decide move
-- [ ] Save race result per round
-- [ ] Print race result after each round
-
-### 3. Result Calculation
-- [ ] Calculate winners based on maximum moves
-- [ ] Handle co-winners
-
-### 4. Final Output
-- [ ] Show winner(s)
-
-### 5. Exception Handling
-- [ ] Show error messages for invalid car names
-- [ ] Show error messages for invalid number of rounds
-
-
-
-
-
-## (4) Implement Features (Build the Prototype)
+## (3) Implement Features (Build the Prototype)
 
 - [ ] : Implement (1) Input & Output
-- [ ] : Implement (2) Race Execution
+- [ ] : Implement (2) Execution
 - [ ] : Implement (3) Result Calculation 
 - [ ] : Implement (4) Final Output
 - [ ] : Implement (5) Exception Handling
