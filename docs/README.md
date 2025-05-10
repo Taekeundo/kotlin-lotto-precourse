@@ -31,18 +31,25 @@
         - 1000원 단위 (나눠지는지)
         => "형식 맞지 않을 경우 [ERROR]처리"
 
+- Calc
+   - price로 몇개(nTickets) 살 수 있는지 체크
+
+- RandomGenerate
+   - repeat(nTickets)
+      - 랜덤 6자리 숫자 생성
+      - 오름차순 정렬
+      - 저장
+
+   - validate
+      - 6개 생성해야함      // 라이브러리 해결
+      - 숫자 맞는지        // 라이브러리 해결
+      - 서로 겹치면 안됨    // 라이브러리 해결
+      - 범위가 1-45 맞는지 // 라이브러리 해결
+      - 오름차순 정렬      // .sort() 사용
+
 - OutputView: \n
 - OutputView: You have purchased 15(= nTickets) tickets.
-
-    - Calc
-        - price로 몇개(nTickets) 살 수 있는지 체크
-
-    - RandomGenerate
-        - repeat(nTickets) -> 랜덤 6자리 숫자 생성 -> 출력 -> 저장
-        - 규칙
-            6개 생성해야함
-            서로 겹치면 안됨
-            오름차순 정렬
+- OutputView: Result of ticket results as many as nTickets.
 
 - OutputView: \n
 - OutputView: Please enter last week's winning numbers.
@@ -50,8 +57,8 @@
     - Validate
         - 6개 맞는지
         - 숫자 맞는지
-        - 겹치는거 없는지
         - 범위가 1-45 맞는지
+        - 겹치는거 없는지
 
 - OutputView: \n
 - OutputView: Please enter the bonus number.
